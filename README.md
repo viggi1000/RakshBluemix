@@ -49,6 +49,14 @@ The Node-Red application is used to split various sensor values from JSON format
 * [IBM Bluemix](https://www.ibm.com/cloud-computing/bluemix/) - Cloud platform service
 * [Particle](https://www.particle.io/) - Wifi MCU
 
+## Future Concept 
+I aim to move towards a BLE based sensor system to reduce size and power consumption. Such a system would use an MQTT broker in the Mobile or a Raspberry Pi W to send data to Bluemix.
+Future HW design: 
+![picture1](https://cloud.githubusercontent.com/assets/1295467/25814759/35a311b2-343c-11e7-819f-f1012277123c.png)
+
+Future app design:
+![picture3](https://cloud.githubusercontent.com/assets/1295467/25814872/87266db8-343c-11e7-849b-642ce651c501.png)
+
 
 ## Authors
 
