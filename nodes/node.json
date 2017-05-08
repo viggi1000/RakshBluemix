@@ -1,0 +1,476 @@
+[
+    {
+        "id": "1971355f.05446b",
+        "type": "tab",
+        "label": "Flow 1"
+    },
+    {
+        "id": "ae0082ac.51ff8",
+        "type": "function",
+        "z": "1971355f.05446b",
+        "name": "HR",
+        "func": "return {payload:msg.payload.BPM};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "ff6ad0d9.00953",
+                "7b1ed0b6.6f8de",
+                "999b9d95.87aca"
+            ]
+        ]
+    },
+    {
+        "id": "ff6ad0d9.00953",
+        "type": "switch",
+        "z": "1971355f.05446b",
+        "name": "BPM thresh",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "gt",
+                "v": "30",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 450,
+        "y": 400,
+        "wires": [
+            [
+                "80621eff.7f9de"
+            ],
+            [
+                "8e1706a.f71e8f8"
+            ]
+        ]
+    },
+    {
+        "id": "5dad02b7.a252fc",
+        "type": "debug",
+        "z": "1971355f.05446b",
+        "name": "vital status",
+        "active": true,
+        "complete": "payload",
+        "x": 790,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "c0c482df.3f3b8",
+        "type": "debug",
+        "z": "1971355f.05446b",
+        "name": "device data",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 292.00006103515625,
+        "y": 654.0001163482666,
+        "wires": []
+    },
+    {
+        "id": "80621eff.7f9de",
+        "type": "template",
+        "z": "1971355f.05446b",
+        "name": "danger",
+        "field": "payload",
+        "fieldType": "msg",
+        "syntax": "mustache",
+        "template": "ALERT! Heart Rate ({{payload}}) within unsafe limits",
+        "x": 610,
+        "y": 380,
+        "wires": [
+            [
+                "5dad02b7.a252fc",
+                "f8398eb.e84d97",
+                "ac99e6d7.c33e58"
+            ]
+        ]
+    },
+    {
+        "id": "8e1706a.f71e8f8",
+        "type": "template",
+        "z": "1971355f.05446b",
+        "name": "safe",
+        "field": "payload",
+        "fieldType": "msg",
+        "syntax": "mustache",
+        "template": "Heart Rate ({{payload}}) normal",
+        "x": 620,
+        "y": 420,
+        "wires": [
+            [
+                "5dad02b7.a252fc"
+            ]
+        ]
+    },
+    {
+        "id": "cf54c3ea.441b5",
+        "type": "ibmiot in",
+        "z": "1971355f.05446b",
+        "authentication": "apiKey",
+        "apiKey": "34dcc340.6b91cc",
+        "inputType": "evt",
+        "deviceId": "",
+        "applicationId": "",
+        "deviceType": "+",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "RakshWearable",
+        "service": "registered",
+        "allDevices": true,
+        "allApplications": "",
+        "allDeviceTypes": true,
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": true,
+        "qos": 0,
+        "x": 118.00000762939453,
+        "y": 391.9999942779541,
+        "wires": [
+            [
+                "ae0082ac.51ff8",
+                "c0c482df.3f3b8",
+                "ae565d33.96f66",
+                "fcf34d39.09173",
+                "94110458.63e778"
+            ]
+        ]
+    },
+    {
+        "id": "ae565d33.96f66",
+        "type": "function",
+        "z": "1971355f.05446b",
+        "name": "sp",
+        "func": "return {payload:msg.payload.sp};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 298,
+        "y": 337.33331298828125,
+        "wires": [
+            [
+                "f9a1960e.808028",
+                "b89ca02c.274e5"
+            ]
+        ]
+    },
+    {
+        "id": "f9a1960e.808028",
+        "type": "ui_text",
+        "z": "1971355f.05446b",
+        "group": "94f852a7.20d7b",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "spo2",
+        "label": "spo2: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 441.1666946411133,
+        "y": 322.0000801086426,
+        "wires": []
+    },
+    {
+        "id": "7b1ed0b6.6f8de",
+        "type": "ui_text",
+        "z": "1971355f.05446b",
+        "group": "94f852a7.20d7b",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Heart Rate:",
+        "label": "HR: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 452,
+        "y": 447.33331298828125,
+        "wires": []
+    },
+    {
+        "id": "fcf34d39.09173",
+        "type": "function",
+        "z": "1971355f.05446b",
+        "name": "RR",
+        "func": "return {payload:msg.payload.RR};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 314.00003814697266,
+        "y": 555.3334035873413,
+        "wires": [
+            [
+                "e69fc47a.02f298",
+                "24acee9b.59c942"
+            ]
+        ]
+    },
+    {
+        "id": "e69fc47a.02f298",
+        "type": "ui_gauge",
+        "z": "1971355f.05446b",
+        "name": "",
+        "group": "94f852a7.20d7b",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Respiration Rate",
+        "label": "Breaths per min",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 473.166690826416,
+        "y": 532.6666965484619,
+        "wires": []
+    },
+    {
+        "id": "f8398eb.e84d97",
+        "type": "ui_toast",
+        "z": "1971355f.05446b",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "ALERT! Low Heart Rate!",
+        "x": 795.1667098999023,
+        "y": 306.6666965484619,
+        "wires": []
+    },
+    {
+        "id": "24acee9b.59c942",
+        "type": "ui_chart",
+        "z": "1971355f.05446b",
+        "name": "RR histogram",
+        "group": "94f852a7.20d7b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Respiration Data",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "ymin": "0",
+        "ymax": "40",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "x": 449.8333988189697,
+        "y": 593.3334064483643,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "999b9d95.87aca",
+        "type": "ui_chart",
+        "z": "1971355f.05446b",
+        "name": "HR histogram",
+        "group": "94f852a7.20d7b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "HeartRate Data",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "ymin": "0",
+        "ymax": "200",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "x": 464.6666946411133,
+        "y": 490.0000286102295,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b89ca02c.274e5",
+        "type": "ui_chart",
+        "z": "1971355f.05446b",
+        "name": "SpO2 histogram",
+        "group": "94f852a7.20d7b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "SpO2 Data",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "ymin": "70",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "x": 472.0000305175781,
+        "y": 362.0000219345093,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ac99e6d7.c33e58",
+        "type": "delay",
+        "z": "1971355f.05446b",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 747.5,
+        "y": 357,
+        "wires": [
+            [
+                "9561dc99.7f867"
+            ]
+        ]
+    },
+    {
+        "id": "9561dc99.7f867",
+        "type": "e-mail",
+        "z": "1971355f.05446b",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "name": "viggi1000@gmail.com",
+        "dname": "",
+        "x": 971,
+        "y": 359,
+        "wires": []
+    },
+    {
+        "id": "94110458.63e778",
+        "type": "ui_button",
+        "z": "1971355f.05446b",
+        "name": "Doctor data",
+        "group": "94f852a7.20d7b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Send Data to Doctor",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "button",
+        "x": 212.5,
+        "y": 202,
+        "wires": [
+            [
+                "8ae73112.c83d"
+            ]
+        ]
+    },
+    {
+        "id": "8ae73112.c83d",
+        "type": "e-mail",
+        "z": "1971355f.05446b",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "name": "viggi1000@gmail.com",
+        "dname": "",
+        "x": 561,
+        "y": 197,
+        "wires": []
+    },
+    {
+        "id": "34dcc340.6b91cc",
+        "type": "ibmiot",
+        "z": "",
+        "name": "Photon",
+        "keepalive": "60",
+        "domain": "internetofthings.ibmcloud.com",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "94f852a7.20d7b",
+        "type": "ui_group",
+        "z": "",
+        "name": "Raksh Database",
+        "tab": "13c8b16e.7c2a6f",
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "13c8b16e.7c2a6f",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard"
+    }
+]
