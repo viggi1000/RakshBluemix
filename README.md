@@ -3,7 +3,10 @@
 Raksh, named after the Sanskrit word “safeguard,” is a low cost wifi-based, ear-worn multi-parameter monitoring platform to primarily monitor child pneumonia.
 Raksh, continuously monitor parameters like Respiration Rate, Heart Rate, Blood Oxygenation (SpO2) and Body Temperature in a noninvasive and nonobtrusive manner behind the ear. 
 The data is streamed using MQTT to an IBM Bluemix server. This project also explores the opportunities for presenting patient vital signs from such a device to the remote health care workers and doctors. 
+
+### Raksh Dashboard view
 <img width="772" alt="screenshot1" src="https://cloud.githubusercontent.com/assets/1295467/25814388/f857bb24-343a-11e7-8361-c951c5acf781.png">
+
 
 ## Getting Started
 Raksh was designed to be simple to develop and the components are modular through the use of the i2c bus
@@ -32,6 +35,11 @@ Connect SDA, SCL of MAX30100&MLX90614 to D0,D1 respectively and Vin,Gnd to 3.3V 
 	7. Generate API keys in the Apps section of the Watson IoT platform and edit the Node-Red device input
 ```
 Visualize the data on the Node-Red dashboard.
+
+### Node-Red Application
+The Node-Red application is used to split various sensor values from JSON format and display using charts and dials. Alerts are also configurable and currently email is used to convey patient alerts but in future iterations a phone alarm might be triggered.
+
+<img width="504" alt="noderedflow" src="https://cloud.githubusercontent.com/assets/1295467/25814454/2d770314-343b-11e7-9e5b-fb60995f7756.PNG">
 
 
 ## Built With
