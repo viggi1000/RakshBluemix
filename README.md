@@ -54,7 +54,7 @@ I aim to move towards a BLE based sensor system to reduce size and power consump
 
 Future HW design: 
 
-![picture1](https://cloud.githubusercontent.com/assets/1295467/25814759/35a311b2-343c-11e7-819f-f1012277123c.png)
+<img width="564" alt="capture" src="https://cloud.githubusercontent.com/assets/1295467/25815011/1a796732-343d-11e7-8566-5c762c508fb3.PNG">
 
 
 Future app design:
