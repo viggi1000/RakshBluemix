@@ -61,5 +61,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Thanks to [oxullo](https://github.com/oxullo/Arduino-MAX30100) for the amazing MAX30100 lib
+* IBM & Node-Red team for providing such amazing tools!
+* Dad for funding my offshoot ideas as always.
 
 
