@@ -12,13 +12,12 @@ The data is streamed using MQTT to an IBM Bluemix server. This project also expl
 Raksh was designed to be simple to develop and the components are modular through the use of the i2c bus
 ### Hardware Prerequisites
 
-```
 	1. Particle Photon (Wifi MCU)
 	2. MAX30100 (SpO2, Heart Rate IC)
 	3. MLX90614 (I2C Noncontact Temperature sensor)
 	4. LIR2560 battery
 	5. 5V Boost regulator
-```
+
 Connections: 
 Connect SDA, SCL of MAX30100&MLX90614 to D0,D1 respectively and Vin,Gnd to 3.3V and Gnd in the Particle Photon.
 
